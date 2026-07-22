@@ -1,12 +1,58 @@
 import puter, { type FSItem } from "@heyputer/puter.js";
 import { useEffect, useState } from "react";
 import Dropzone from "~/components/Dropzone";
+import { prepareInstructions } from "~/constants";
 import { formatSize } from "~/utils/sizeFormatter";
 
+const jobDes = `Urgent Hiring: Full Stack Developers (Multiple Positions – Fresher & Experienced)
+Location → Remote (WFH), Bangladesh
+Job Type → Full-Time
+Work Hours → USA (EST) / Europe (CET) Business Hours
+
+Open Positions
+→ Full Stack Developer (Fresher)
+ Salary → 35,000 – 50,000 BDT/month
+→ Senior Full Stack Developer (Experienced)
+Salary → 100,000 – 175,000 BDT/month
+
+Role Overview:
+We are hiring multiple Full Stack Developers to join our international clients. Whether you're a recent graduate eager to launch your career or an experienced engineer looking for your next challenge, this is an opportunity to work on real-world web applications with global teams.
+
+Key Responsibilities:
+→ Develop, test, and maintain modern web applications
+ → Build responsive and user-friendly frontend interfaces
+ → Develop secure, scalable backend services and APIs
+ → Work with databases and integrate third-party services
+ → Debug, troubleshoot, and optimize application performance
+ → Collaborate with designers, developers, and project managers
+ → Write clean, maintainable, and well-documented code
+
+Requirements (Freshers):
+→ Bachelor's degree in Computer Science or a related field (or equivalent skills)
+ → Understanding of HTML, CSS, JavaScript, and modern web development
+ → Knowledge of at least one frontend framework (React, Angular, Vue, etc.)
+ → Basic understanding of backend development (Node.js, PHP, Python, Java, .NET, or similar)
+ → Familiarity with SQL or NoSQL databases
+ → Strong willingness to learn and grow as a developer
+
+Requirements (Experienced Developers):
+→ 6+ years of professional Full Stack Development experience
+ → Strong expertise in modern frontend and backend technologies
+ → Experience designing and developing scalable web applications
+ → Strong knowledge of APIs, databases, Git, and software architecture
+ → Experience working in Agile development environments
+ → Ability to work independently in a remote team
+
+Nice to Have:
+→ Experience with AI application development or AI integrations
+ → Experience with AWS, Azure, or Google Cloud
+ → Experience with Docker, Kubernetes, and CI/CD pipelines
+`;
+
 export default function Upload() {
-	const [companyName, setCompanyName] = useState("");
-	const [jobTitle, setJobTitle] = useState("");
-	const [jobDescription, setJobDescription] = useState("");
+	const [companyName, setCompanyName] = useState("Enzo Tech");
+	const [jobTitle, setJobTitle] = useState("Full stack developer");
+	const [jobDescription, setJobDescription] = useState(jobDes);
 
 	const [statusText, setStatusText] = useState("");
 
@@ -54,8 +100,28 @@ export default function Upload() {
 		setStatusText("Successfully saved in KV");
 
 		setStatusText("Getting AI feedback now...");
-		await puter.ai.chat();
-		setStatusText("Successfully saved in KV");
+
+		// *** PUTER AI PROMPT KHANKI MAGIR POLA ... OR 14 GUSHTI CHUDI BESSHA MAGIR JAT ... DOCUMENTATION HOGA DIA LEKHSE MADARCHOD ER POYDA KHANKIRPOLA
+		const feedback = await puter.ai.chat([
+			{
+				type: "file",
+				puter_path: "~/Desktop/your-document.pdf",
+			},
+			{
+				type: "text",
+				text: "Please summarize this document.",
+			},
+		]);
+
+		if (!feedback) return setStatusText("Analysis Failed :(");
+
+		setStatusText("Analysis Complete.");
+		// const feedbackText =
+		// 	typeof feedback.message.content === "string"
+		// 		? feedback.message.content
+		// 		: feedback.message.content[0].text;
+
+		console.log(feedback);
 
 		setIsAnalyzing(false);
 	};

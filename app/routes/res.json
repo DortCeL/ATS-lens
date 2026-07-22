@@ -1,0 +1,40 @@
+{
+	"message": {
+		"model": "claude-sonnet-4-6",
+		"id": "msg_011CdHTh4Wy81u2K2aauk7wd",
+		"type": "message",
+		"role": "assistant",
+		"content": [
+			{
+				"type": "text",
+				"text": "{\n  \"overallScore\": 28,\n  \"ATS\": {\n    \"score\": 30,\n    \"tips\": [\n      {\n        \"type\": \"improve\",\n        \"tip\": \"Missing critical modern web development keywords such as React, Angular, Vue, Node.js, REST APIs, Docker, AWS, CI/CD, Git, and Agile — all of which are explicitly required in the job description and heavily scanned by ATS systems.\"\n      },\n      {\n        \"type\": \"improve\",\n        \"tip\": \"The resume uses tables and multi-column layouts in the Computer Skills section, which many ATS parsers cannot read correctly, causing important skill data to be lost or misread.\"\n      },\n      {\n        \"type\": \"improve\",\n        \"tip\": \"Job titles and section headers do not align with the target role. 'Senior Software Engineering Consultant' and 'Senior Software Engineer' are not mapped to 'Full Stack Developer', reducing keyword match scores in ATS.\"\n      },\n      {\n        \"type\": \"good\",\n        \"tip\": \"The resume does include some parseable keywords like C++, Java, .NET Framework, XML, and Visual Studio, which may partially match backend-related ATS filters.\"\n      }\n    ]\n  },\n  \"toneAndStyle\": {\n    \"score\": 45,\n    \"tips\": [\n      {\n        \"type\": \"good\",\n        \"tip\": \"Strong Action Verbs Used\",\n        \"explanation\": \"The resume consistently uses strong action verbs such as 'Designed', 'Implemented', 'Managed', 'Developed', and 'Analyzed', which is a positive stylistic choice that conveys ownership and impact.\"\n      },\n      {\n        \"type\": \"improve\",\n        \"tip\": \"Outdated and Irrelevant Technology References\",\n        \"explanation\": \"The resume prominently features technologies from the 1980s-2000s such as COBOL, FORTRAN, VAX/VMS, PLM/86, and Motorola Assembler. These are irrelevant to a Full Stack Developer role and make the resume feel outdated. They should be removed or heavily de-emphasized.\"\n      },\n      {\n        \"type\": \"improve\",\n        \"tip\": \"Tone is Too Embedded/Systems Focused\",\n        \"explanation\": \"The overall tone and narrative of the resume"
+			}
+		],
+		"stop_reason": "max_tokens",
+		"stop_sequence": null,
+		"stop_details": null,
+		"usage": {
+			"input_tokens": 5937,
+			"cache_creation_input_tokens": 0,
+			"cache_read_input_tokens": 0,
+			"cache_creation": {
+				"ephemeral_5m_input_tokens": 0,
+				"ephemeral_1h_input_tokens": 0
+			},
+			"output_tokens": 549,
+			"service_tier": "standard",
+			"inference_geo": "global"
+		}
+	},
+	"usage": {
+		"input_tokens": 5937,
+		"ephemeral_5m_input_tokens": 0,
+		"ephemeral_1h_input_tokens": 0,
+		"cache_read_input_tokens": 0,
+		"output_tokens": 549,
+		"thinking_tokens": 0,
+		"usd_cents": 2.6046
+	},
+	"finish_reason": "stop",
+	"via_ai_chat_service": true
+}

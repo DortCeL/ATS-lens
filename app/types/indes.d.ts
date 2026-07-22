@@ -49,3 +49,22 @@ interface Feedback {
 		}[];
 	};
 }
+
+interface AIResponse {
+	index: number;
+	message: {
+		role: string;
+		content: string | any[];
+		refusal: null | string;
+		annotations: any[];
+	};
+	logprobs: null | any;
+	finish_reason: string;
+	usage: {
+		type: string;
+		model: string;
+		amount: number;
+		cost: number;
+	}[];
+	via_ai_chat_service: boolean;
+}
