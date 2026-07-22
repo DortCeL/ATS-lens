@@ -1,7 +1,30 @@
+import puter from "@heyputer/puter.js";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 export default function Navbar() {
 	const navigate = useNavigate();
+
+	const [name, setName] = useState("You");
+
+	// useEffect(() => {
+	// 	const fetchName = async () => {
+	// 		const name = await puter.kv.get("profile");
+	// 		console.log(name);
+	// 		return name;
+	// 	};
+	// 	fetchName();
+	// 	setName(name);
+	// }, [name]);
+
+	useEffect(() => {
+		const fetchName = async () => {
+			const name = (await puter.auth.whoami()).username;
+			console.log("name is ", name);
+			setName(name);
+		};
+		fetchName();
+	}, [name]);
 
 	return (
 		<nav className='sticky top-20 w-1/3  mx-auto'>
@@ -18,7 +41,9 @@ export default function Navbar() {
 				</div>
 
 				<div>
-					<p>hello YOU</p>
+					<p className='text-sm'>
+						hello <span className='font-bold text-xl'>{name}</span>
+					</p>
 				</div>
 			</div>
 		</nav>

@@ -1,13 +1,21 @@
 import { useDropzone } from "react-dropzone";
 
-export default function Dropzone() {
+interface DropzoneProps {
+	onFileSelect: (file: File | null) => void;
+}
+
+export default function Dropzone({ onFileSelect }: DropzoneProps) {
 	const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
 		onDrop: (acceptedFiles) => {
-			// Do something with the files, e.g. upload to a server
+			const selectedFile = acceptedFiles[0] || null;
 
-			console.log(acceptedFiles);
+			// console.log("selected file", selectedFile);
+			onFileSelect(selectedFile);
 		},
 		maxFiles: 1,
+		accept: {
+			"application/pdf": [".pdf"],
+		},
 	});
 
 	return (
@@ -18,13 +26,6 @@ export default function Dropzone() {
 					<p className='text-xl font-bold'>Upload pdf</p>
 					<p className='font-md'>Click or Drag n drop your resume here</p>
 				</div>
-			</div>
-			<div className='my-5 text-center'>
-				{acceptedFiles.map((file) => (
-					<>
-						<p>{file.name}</p>
-					</>
-				))}
 			</div>
 		</div>
 	);

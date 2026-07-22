@@ -1,10 +1,23 @@
 import { useState } from "react";
 import Dropzone from "~/components/Dropzone";
+import { formatSize } from "~/utils/sizeFormatter";
 
 export default function Upload() {
 	const [companyName, setCompanyName] = useState("");
 	const [jobTitle, setJobTitle] = useState("");
 	const [jobDescription, setJobDescription] = useState("");
+
+	const [file, setFile] = useState<File | null>(null);
+
+	const handleFileSelect = (selectedFile: File | null) => {
+		setFile(selectedFile);
+	};
+
+	const handleFileDelete = () => {
+		setFile(null);
+	};
+
+	const handleAnalyze = () => {};
 
 	return (
 		<div className='flex min-h-screen items-center justify-center'>
@@ -45,8 +58,30 @@ export default function Upload() {
 
 					{/* PDF upload area */}
 					<section className='pdf-upload-area mt-10'>
-						<Dropzone />
+						<Dropzone onFileSelect={handleFileSelect} />
+						{file && (
+							<div className='mt-4 px-5'>
+								<div className='flex justify-between items-center'>
+									<p className='text-center wrap-break-word'>{file?.name}</p>
+									<button
+										onClick={handleFileDelete}
+										className='w-10 h-10 rounded-full bg-red-500 inline-flex items-center justify-center font-extrabold text-black cursor-pointer'
+									>
+										X
+									</button>
+								</div>
+
+								<p className='text-start text-gray-500 '>
+									{formatSize(file.size)}
+								</p>
+							</div>
+						)}
 					</section>
+					<div className='mt-20'>
+						<button type='submit' className='btn w-full'>
+							Analyze
+						</button>
+					</div>
 				</form>
 			</div>
 		</div>
