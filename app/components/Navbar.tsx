@@ -1,6 +1,6 @@
 import puter from "@heyputer/puter.js";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function Navbar() {
 	const navigate = useNavigate();
@@ -40,11 +40,11 @@ export default function Navbar() {
 					</span>
 				</div>
 
-				<div>
-					<p className='text-sm'>
+				<Link to='/profile'>
+					<p className='text-sm cursor-pointer'>
 						hello <span className='font-bold text-xl'>{name}</span>
 					</p>
-				</div>
+				</Link>
 			</div>
 		</nav>
 	);
