@@ -102,16 +102,28 @@ export default function Upload() {
 		setStatusText("Getting AI feedback now...");
 
 		// *** PUTER AI PROMPT KHANKI MAGIR POLA ... OR 14 GUSHTI CHUDI BESSHA MAGIR JAT ... DOCUMENTATION HOGA DIA LEKHSE MADARCHOD ER POYDA KHANKIRPOLA
-		const feedback = await puter.ai.chat([
-			{
-				type: "file",
-				puter_path: "~/Desktop/your-document.pdf",
-			},
-			{
-				type: "text",
-				text: "Please summarize this document.",
-			},
-		]);
+		const prompt = prepareInstructions({ jobTitle, jobDescription });
+		const feedback = await puter.ai.chat(
+			[
+				{
+					role: "user",
+					content: "Can you see the file? tell me its name. nothing else.",
+				},
+			],
+			true,
+			{ model: "gpt-5.4-nano" },
+		);
+
+		// const feedback = await puter.ai.chat([
+		// 	{
+		// 		type: "file",
+		// 		puter_path: "~/Desktop/your-document.pdf",
+		// 	},
+		// 	{
+		// 		type: "text",
+		// 		text: "Please summarize this document.",
+		// 	},
+		// ]);
 
 		if (!feedback) return setStatusText("Analysis Failed :(");
 
